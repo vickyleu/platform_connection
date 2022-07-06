@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_ping/dart_ping.dart';
-import 'package:grpc/grpc_web.dart';
 import 'package:wake_on_lan/wake_on_lan.dart';
 
 enum PlatformEnum {

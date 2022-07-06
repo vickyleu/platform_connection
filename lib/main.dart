@@ -2,14 +2,24 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:screen_retriever/screen_retriever.dart';
 import 'package:untitled/lan_utils.dart';
-
+import 'package:touch_indicator/touch_indicator.dart';
 void main() {
   //Wake on lan 网卡启动
   //bios 找到wake on lan打开, 没有此项的话,如技嘉主板 开启 "平台电力管理",关闭"ErP",找到"IO PORTS",进去"Network Stack Configuration",打开PXE支持
   // 进入windows ,进入控制面板,电源选项,关闭"快速启动",右键托盘网络图标,进入适配器管理界面,右键属性,网卡高级 电源管理 取消"允许计算机关闭此设备以节约电源",
   // 否则电源管理还是会关闭网卡供电,勾选"允许此设备唤醒计算机"和"只允许幻数据包唤醒计算机"
+  WidgetsFlutterBinding.ensureInitialized();
+  getScreenInfo();
   runApp(const MyApp());
+}
+
+Future<void> getScreenInfo() async {
+  var _primaryDisplay = await screenRetriever.getPrimaryDisplay();
+  var _displayList = await screenRetriever.getAllDisplays();
+  print("_primaryDisplay:${_primaryDisplay.toJson()}");
+  print("_displayList:${_displayList.map((e) => e.toJson())}");
 }
 
 class MyApp extends StatelessWidget {
@@ -89,19 +99,21 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '0',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
+      body: TouchIndicator(
+        child:Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              const Text(
+                'You have pushed the button this many times:',
+              ),
+              Text(
+                '0',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ],
+          ),
+        )
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,

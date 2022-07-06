@@ -11,8 +11,12 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   wake_on_lan: ^3.0.0
-  grpc: ^3.0.2
   dart_ping: ^7.0.0
+  just_audio: ^0.9.27
+  just_audio_background: ^0.0.1-beta.7
+  just_audio_windows: ^0.1.0
+  screen_retriever: ^0.1.2
+  touch_indicator: ^2.0.0
 
 dev_dependencies:
   flutter_test:
