@@ -11,7 +11,8 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.5
   wake_on_lan: ^3.0.0
-  dart_ping: ^6.1.2
+  grpc: ^3.0.2
+  dart_ping: ^7.0.0
 
 dev_dependencies:
   flutter_test:
